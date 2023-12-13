@@ -1,0 +1,116 @@
+Level0:
+ssh bandit0@bandit.labs.overthewire.org -p 2220  (to login)
+pass = bandit0
+After that to access readme file typed "cat readme"
+logout after that
+
+level1:
+ssh bandit1@bandit.labs.overthewire.org -p 2220  (to login and then give the password in above readme file)
+To access dashed file we need to give absolute location so typed "cat ./-"
+logout after that
+
+level2:
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+cat "spaces in this filename"
+logout
+
+level3:
+ssh bandit3@bandit.labs.overthewire.org -p 2220
+ls (shows inhere file)
+cd inhere
+ls -a(shows a hidden file)
+cat .hidden
+logout
+
+level4:
+ssh bandit4@bandit.labs.overthewire.org -p 2220 
+ls (shows inhere file)
+cd inhere
+ls (shows all 9 files)
+cat ./-file07 (got to know by bruteforcing)
+logout
+
+level5:
+ssh bandit5@bandit.labs.overthewire.org -p 2220  
+ls (shows inhere file)
+cd inhere
+ls (shows a lot of files)
+find . -type f -size 1033c ! -executable 
+cat ./maybehere07/.file2
+logout
+
+level6:
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+cd / (to go to root dir to search the entire server)
+find ./ -user bandit7 -group bandit6 -size 33c
+cat (only absolute location that pops up)
+logout
+
+level7:
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+ls(shows data.txt)
+grep millionth data.txt
+logout
+
+level8:
+ssh bandit8@bandit.labs.overthewire.org -p 2220
+sort data.txt | uniq -u
+logout
+
+level9:
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+strings data.txt (we can see the pass clearly after this)
+logout
+
+level10:
+ssh bandit10@bandit.labs.overthewire.org -p 2220
+base64 -d data.txt
+logout
+
+level11:
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+cat data.txt | tr 'a-z,A-Z' 'n-za-m,N-ZA-M'
+logout
+
+level12:
+ssh bandit12@bandit.labs.overthewire.org -p 2220 
+ls (shows data.txt file)
+mdkir /tmp/RudraSinha
+cp data.txt /tmp/RudraSinha
+cd /tmp/RudraSinha
+xxd -r data.txt > Rudra
+file Rudra (gzip compressed file)
+mv Rudra Rudra.gz
+gzip -d Rudra.gz
+file Rudra (bzip2 compressed file)
+mv Rudra balls.bz2
+bzip2 -d balls.bz2
+file balls(gzip compressed file)
+[Repeated same process for uncompressing]
+file balls (POSIX tar archive)
+tar xf balls
+file data5.bin (POSIX tar archive)
+[Now repeated random combination of above three methods of uncompressing till I got an ASCII test file]
+cat balls
+logout
+
+level13:
+ssh bandit13@bandit.labs.overthewire.org -p 2220
+ssh bandit14@localhost -i sshkey.private -p 2220
+(TYPE yes)
+GOT CONNECTED TO bandit14
+cat /etc/bandit_pass/bandit14 (to get pass of bandit14)
+
+level14:
+nc localhost 30000
+(Type pass of bandit14)
+GOT PASS OF bandit15
+logout
+
+level15:
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+openssl s_client -connect localhost:30001
+(Enter pass of bandit15)
+GOT PASS OF bandit16
+logout
+
